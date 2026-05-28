@@ -1,10 +1,15 @@
+@php
+    $id = Auth::user()->id;
+    $instructorId = App\Models\User::find($id);
+    $status = $instructorId->status;
+@endphp
 
 <div class="sidebar-header">
 				<div>
 					<img src="{{ asset('backend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
 				</div>
 				<div>
-					<h4 class="logo-text">Educate   </h4>
+					<h4 class="logo-text">Invent</h4>
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-back'></i>
 				</div>
@@ -12,24 +17,25 @@
 			<!--navigation-->
 			<ul class="metismenu" id="menu">
                  <li>
-					<a href="{{ route('instructor.index') }}">
+					<a href="{{ route('admin.index') }}">
 						<div class="parent-icon"><i class='bx bx-home-alt'></i>
 						</div>
 						<div class="menu-title">Dashboard</div>
 					</a>
 				</li>
 
-				<li class="menu-label">UI Elements</li>
+                @if ($status === '1')
+                <li class="menu-label">UI Elements</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='bx bx-cart'></i>
 						</div>
-						<div class="menu-title">eCommerce</div>
+						<div class="menu-title">Manage Category</div>
 					</a>
 					<ul>
-						<li> <a href="ecommerce-products.html"><i class='bx bx-radio-circle'></i>Products</a>
+						<li> <a href="{{ route('all.category') }}"><i class='bx bx-radio-circle'></i>All Category</a>
 						</li>
-						<li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product Details</a>
+						<li> <a href="{{ route('all.subcategory') }}"><i class='bx bx-radio-circle'></i>All SubCategory</a>
 						</li>
 					</ul>
 				</li>
@@ -37,10 +43,10 @@
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
 						</div>
-						<div class="menu-title">Components</div>
+						<div class="menu-title">Manage Instructors</div>
 					</a>
 					<ul>
-						<li> <a href="component-alerts.html"><i class='bx bx-radio-circle'></i>Alerts</a>
+						<li> <a href="{{ route('all.instructors') }}"><i class='bx bx-radio-circle'></i>All Instructors</a>
 						</li>
 						<li> <a href="component-accordions.html"><i class='bx bx-radio-circle'></i>Accordions</a>
 						</li>
@@ -81,5 +87,10 @@
 						<div class="menu-title">Support</div>
 					</a>
 				</li>
+                @else
+
+                @endif
+
+
 			</ul>
 			<!--end navigation-->

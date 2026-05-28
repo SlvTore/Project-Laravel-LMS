@@ -91,6 +91,26 @@ class AdminController extends Controller
 
     }
 
+    public function AllInstructor()
+    {
+        $allinstructor = User::where('role', 'instructor')->latest()->get();
+        return view('admin.backend.instructor.all-instructor', compact('allinstructor'));
+    }
+
+    public function UpdateStatus(Request $request)
+    {
+        $userId = $request->input('user_id');
+        $isChecked = $request->input('is_checked', 0);
+
+        $user = User::find($userId);
+        if ($user) {
+            $user->status = $isChecked;
+            $user->save();
+
+            return response()->json(['message' => 'Status updated successfully.']);
+        } 
+    }
+
     public function AdminLogout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -101,6 +121,8 @@ class AdminController extends Controller
 
         return redirect('/admin/login');
     }
+
+
 
 
     // End Method}

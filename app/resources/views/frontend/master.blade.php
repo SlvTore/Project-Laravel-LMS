@@ -53,6 +53,7 @@
 @yield('home')
 @yield('login')
 @yield('register')
+@yield('instructorRegister')
 <!--======================================
         END Content AREA
     ======================================-->

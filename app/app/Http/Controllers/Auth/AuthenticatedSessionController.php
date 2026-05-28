@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
             $url = '/dashboard';
         }
 
-        return redirect()->intended($url);
+        return redirect($url);
     }
 
     /**

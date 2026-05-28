@@ -1,3 +1,8 @@
+@php
+    $id = Auth::user()->id;
+    $profileData = App\Models\User::find($id);
+@endphp
+
 <header class="header-menu-area">
     <div class="header-menu-content dashboard-menu-content pr-30px pl-30px bg-white shadow-sm">
         <div class="container-fluid">
@@ -164,8 +169,8 @@
                                                     <li>
                                                         <ul class="generic-list-item">
                                                             <li>
-                                                                <a href="shopping-cart.html">
-                                                                    <i class="la la-shopping-basket mr-1"></i> My cart
+                                                                <a href="{{ route('user.profile') }}">
+                                                                    <i class="la la-shopping-basket mr-1"></i> My Profile
                                                                 </a>
                                                             </li>
                                                             <li><div class="section-block"></div></li>
@@ -199,7 +204,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="index.html">
+                                                                <a href="{{ route('user.logout') }}">
                                                                     <i class="la la-power-off mr-1"></i> Logout
                                                                 </a>
                                                             </li>
@@ -247,7 +252,7 @@
         <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
             <li><a href="student-detail.html">Public profile</a></li>
             <li><a href="dashboard-settings.html">Edit profile</a></li>
-            <li><a href="index.html">Log out</a></li>
+            <li><a href="{{ route('user.logout') }}">Log out</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">More from Aduca</h4>
         <ul class="generic-list-item off-canvas-menu-list pt-1">

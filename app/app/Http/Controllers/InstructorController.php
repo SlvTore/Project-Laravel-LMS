@@ -16,6 +16,38 @@ class InstructorController extends Controller
      }
     //End Method
 
+    public function InstructorRegister()
+    {
+        return view('frontend.instructor.auth.register');
+    }
+
+    public function InstructorRegisterSave(Request $request){
+        $request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'email'    => ['required', 'string', 'unique:users', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'], // tambahan validasi password
+        ]);
+
+        User::insert([
+            'name'=>$request->username,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'phone'=>$request->phone,
+            'address'=>$request->address,
+            'role'=>'instructor',
+            'status'=>'0',
+        ]);
+
+        $notification = array(
+            'message' => 'Instructor Registered Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('instructor.login')->with($notification);
+
+    }
+
+
      public function InstructorLogin()
     {
         return view('instructor.login');

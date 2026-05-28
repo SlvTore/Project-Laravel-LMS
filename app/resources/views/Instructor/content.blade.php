@@ -1,8 +1,20 @@
 @extends('instructor.index')
 @section('instructorContent')
 
+@php
+    $id = Auth::user()->id;
+    $instructor = App\Models\User::find($id);
+    $status = $instructor->status;
+@endphp
 
 <div class="page-content">
+    @if ($status === '1')
+        <h1 class="text-success">Welcome, Instructor!</h1>
+        <p>Your account is active. You can access all the features and resources available to instructors.</p>
+    @else
+        <h1 class="text-danger">Account Inactive</h1>
+        <p>Your account is currently inactive. Please contact the administrator for more information.</p>
+    @endif
 				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                    <div class="col">
 					 <div class="card radius-10 border-start border-0 border-4 border-info">
@@ -236,6 +248,6 @@
                           </div>
                          </div>
                     </div>
-            </div> 
+            </div>
 
 @endsection
