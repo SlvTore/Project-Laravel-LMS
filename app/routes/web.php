@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CourseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'Index'])->name('index');
@@ -57,6 +58,29 @@ Route::middleware(['auth', 'roles:instructor'])->group(function () {
     Route::get('/instructor/reset-password', [InstructorController::class, 'InstructorResetPassword'])->name('instructor.reset.password');
     Route::post('/instructor/reset-password', [InstructorController::class, 'InstructorUpdatePassword'])->name('instructor.update.password');
     Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');
+
+    //Course Management
+    Route::controller(CourseController::class)->group(function(){
+            Route::get('/all/course', 'AllCourse')->name('all.course');
+            Route::get('/add/course', 'AddCourse')->name('add.course');
+            Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
+            Route::post('/store/course', 'StoreCourse')->name('store.course');
+            Route::get('/edit/course/{id}', 'EditCourse')->name('edit.course');
+            Route::put('/update/course/{id}', 'UpdateCourse')->name('update.course');
+            Route::get('/delete/course/{id}', 'DeleteCourse')->name('delete.course');
+    });
+
+    // Lecture Management
+    Route::controller(CourseController::class)->group(function(){
+        Route::get('/add/course/lecture/{id}', 'AddCourseLecture')->name('add.course.lecture');
+        Route::post('/add/course/section', 'AddCourseSection')->name('add.course.section');
+        Route::post('/save-lecture', 'SaveLecture')->name('save-lecture');
+        Route::get('/edit/lecture/{id}', 'EditLecture')->name('edit.lecture');
+        Route::post('/update-lecture', 'UpdateLecture')->name('update.lecture');
+        Route::get('/delete/lecture/{id}', 'DeleteLecture')->name('delete.lecture');
+        Route::get('/delete/section/{id}', 'DeleteSection')->name('delete.section');
+
+    });
 });
 
 Route::middleware('auth')->group(function () {
@@ -65,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::post('/user/profile/reset-password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
+
 });
 // User Role
 

@@ -34,6 +34,8 @@
 										<input type="file" name="image" class="form-control" id="image">
 									</div>
 
+                                    
+
                                     <div class="col-md-6">
                                          <img id="showImage" src=" {{ url('images/admin/img-profile.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
 

@@ -25,15 +25,15 @@
 				</li>
 
                 @if ($status === '1')
-                <li class="menu-label">UI Elements</li>
+                <li class="menu-label">Course Management</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class='bx bx-cart'></i>
 						</div>
-						<div class="menu-title">Manage Category</div>
+						<div class="menu-title">Manage Courses</div>
 					</a>
 					<ul>
-						<li> <a href="{{ route('all.category') }}"><i class='bx bx-radio-circle'></i>All Category</a>
+						<li> <a href="{{ route('all.course') }}"><i class='bx bx-radio-circle'></i>All Courses</a>
 						</li>
 						<li> <a href="{{ route('all.subcategory') }}"><i class='bx bx-radio-circle'></i>All SubCategory</a>
 						</li>

@@ -11,7 +11,7 @@
 <div class="page-content">
 				<!--breadcrumb-->
 				<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-					<div class="breadcrumb-title pe-3">All Instructo</div>
+					<div class="breadcrumb-title pe-3">All Instructor</div>
 					<div class="ps-3">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb mb-0 p-0">
@@ -23,7 +23,7 @@
 					</div>
 					<div class="ms-auto">
 						<div class="btn-group">
-							<a href="{{ route('add.category') }}" class="btn btn-primary px-5" >Add Category</a>
+							<a href="{{ route('add.category') }}" class="btn btn-primary px-5" >Add Instructor</a>
 						</div>
 					</div>
 				</div>
